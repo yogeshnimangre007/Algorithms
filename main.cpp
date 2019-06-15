@@ -1,10 +1,19 @@
 #include <iostream>
 #include <bits/stdc++.h>
 #include <algorithm>
-using namespace std;
-typedef long long int lli;
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
 #define MAX_S 1000
+
+using namespace std;
+
+typedef long long int lli;
+
 int max(lli  a, lli b) { return (a > b)? a : b;}
+
+int min(lli a,lli b) {return (a<b)? a:b;}
 
 void insertion_sort(lli a[],lli n){
   
@@ -31,6 +40,7 @@ void insertion_sort(lli a[],lli n){
     }
 
 }
+
 void merge(int a[],int l,int m,int u){
     int n1=m-l+1;
 
@@ -73,6 +83,7 @@ void merge(int a[],int l,int m,int u){
 
 
 }
+
 void mergesort(int a[],int l,int u){
     if(l<u){
         int m=(l+u)/2;
@@ -81,24 +92,81 @@ void mergesort(int a[],int l,int u){
         merge(a,l,m,u);
     }
 }
-void countingsort(lli a[],lli n){
-        lli b[n+1],c[MAX_S];
-        for(int i=1;i<=n;i++){
-            cin>>a[i];
-            c[a[i]]++;
-        }
-        for(int i=1;i<MAX_S;i++){
-            c[i]=c[i]+c[i-1];
-        }
-        for(int i=n;i>=1;i--){
-            b[c[a[i]]]=a[i];
-            c[a[i]]--;
-        }
-        for(int i=1;i<=n;i++){
-            cout<<b[i] << " ";
-        };
+
+void countingsort(){
+    lli n;
+    cin>>n;
+    lli a[n+1],b[n+1],c[MAX_S];
+    memset(c, 0, sizeof(c));
+   
+    for(int i=1;i<=n;i++){
+        cin>>a[i];
+        c[a[i]]++;
+    }
+    for(int i=1;i<MAX_S;i++){
+        c[i]=c[i]+c[i-1];
+    }
+    for(int i=n;i>=1;i--){
+        b[c[a[i]]]=a[i];
+        c[a[i]]--;
+    }
+    for(int i=1;i<=n;i++){
+        cout<<b[i] << " ";
+    };
     cout << endl;
 }
-int main(){
+
+void radixsort(lli a[],lli n){//to do in this 
+    lli max=INT_MIN;
+    for(int i=0;i<n;i++){
+        if(a[i]>=max)
+            max=a[i];
+    }
+    lli exp=1;
+    for(exp;max/exp>0;exp*=10){
+        lli output[n],count[MAX_S];
+        memset(count,0,sizeof(count));
+        for(int i=0;i<n;i++){
+            count[(a[i]/exp)%10]++;
+        }
+        for(int i=1;i<10;i++)
+            count[i]+=count[i-1];
+        for(int i=n-1;i>=0;i--){
+            output[count[(a[i]/exp)%10]-1]=a[i];
+            count[(a[i]/exp)%10]--;
+        }
+        for(int i=0;i<n;i++)
+            a[i]=output[i];
+    };
+    for(int i=0;i<n;i++)
+        cout<<a[i]<<" ";
+    cout<<endl;
+}
+
+void bucketsort(float a[],lli n){
+//this sort is used to sort the numbers between certain range like here it is from 1 to 0. ;_;
+    vector<float> b[n];
+    for(int i=0;i<n;i++){
+        int g=n*a[i];               //index of array element in list
+        b[g].push_back(a[i]);
+    }
+    for(int i=0;i<n;i++){
+        sort(b[i].begin(),b[i].end());
+    }
+    for(int i=0;i<n;i++){
+        for(int j=0;j<b[i].size();j++)
+            cout<<b[i][j];
+    }
     
+
+}
+
+int main(){
+    lli n;
+    cin>>n;
+    float a[n];
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    bucketsort(a,n);
 }
