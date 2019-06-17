@@ -11,9 +11,10 @@ using namespace std;
 
 typedef long long int lli;
 
-int max(lli  a, lli b) { return (a > b)? a : b;}
+lli max(lli  a, lli b) { return (a > b)? a : b;}
 
-int min(lli a,lli b) {return (a<b)? a:b;}
+lli min(lli a,lli b) {return (a<b)? a:b;}
+
 
 void insertion_sort(lli a[],lli n){
   

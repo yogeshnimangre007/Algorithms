@@ -1,0 +1,58 @@
+
+1> 
+shifting an number to left by 1 is equivalent to multiplying it by 2..shifting by k means multiplying by 2 raised to k
+2>
+Transitivity:
+•
+f(n) = T(g(n)) and g(n) = T(h(n)) imply f(n) = T(h(n)),
+f(n) = O(g(n)) and g(n) = O(h(n)) imply f(n) = O(h(n)),
+f(n) = ?(g(n)) and g(n) = ?(h(n)) imply f(n) = ?(h(n)),
+f(n) = o(g(n)) and g(n) = o(h(n)) imply f(n) = o(h(n)),
+f(n) = ?(g(n)) and g(n) = ?(h(n)) imply f(n) = ?(h(n)).
+Reflexivity:
+•
+f(n) = T(f(n)),
+f(n) = O(f(n)),
+f(n) = ?(f(n)).
+Symmetry:
+f(n) = T(g(n)) if and only if g(n) = T(f(n)).
+Transpose symmetry:
+•
+f(n) = O(g(n)) if and only if g(n) = ?(f(n)),
+f(n) = o(g(n)) if and only if g(n) = ?(f(n)).
+
+3>
+More generally, we call an algorithm randomized if its behavior is determined not only by its
+input but also by values produced by a random-number generator
+4>
+ the sorted order they determine is based only
+on comparisons between the input elements. We call such sorting algorithms comparison
+sorts.
+5>
+We can represent a collection of objects that have the same fields by using an array for each
+field. As an example, Figure 10.5 shows how we can implement the linked list of Figure
+10.3(a) with three arrays. The array key holds the values of the keys currently in the dynamic
+set, and the pointers are stored in the arrays next and prev. For a given array index x, key[x],
+next[x], and prev[x] represent an object in the linked list. Under this interpretation, a pointer x
+is simply a common index into the key, next, and prev arrays.
+6>
+The difficulty with direct addressing is obvious: if the universe U is large, storing a table T of
+size |U| may be impractical, or even impossible, given the memory available on a typical
+computer. Furthermore, the set K of keys actually stored may be so small relative to U that
+most of the space allocated for T would be wasted. 
+7>
+In a hash table in which collisions are resolved by chaining, an unsuccessful search takes
+expected time Θ(1 + α), under the assumption of simple uniform hashing. 
+8>
+In a hash table in which collisions are resolved by chaining, a successful search takes time
+Θ(1 + α), on the average, under the assumption of simple uniform hashing. 
+9>
+Occasionally we do know the distribution. For example, if the keys are known to be random
+real numbers k independently and uniformly distributed in the range 0 ≤ k < 1, the hash
+function
+h(k) = km
+10>
+In the division method for creating hash functions, we map a key k into one of m slots by
+taking the remainder of k divided by m. That is, the hash function is
+h(k) = k mod m. 
+11>
